@@ -1,6 +1,7 @@
 const { merge } = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
+const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
 
 const common = require('./webpack.common.js');
@@ -8,17 +9,10 @@ const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
   mode: 'development',
-  entry: {
-    index: [
-      'webpack-hot-middleware/client',
-      path.resolve(__dirname, 'client/index.jsx'),
-    ],
-  },
-  resolve: {
-    alias: {
-      'react-dom': '@hot-loader/react-dom',
-    },
-  },
+  entry: [
+    'webpack-hot-middleware/client',
+    path.resolve(__dirname, 'client/index.jsx'),
+  ],
   devtool: 'eval-source-map',
   plugins: [
     new HotModuleReplacementPlugin(),
@@ -26,6 +20,7 @@ module.exports = merge(common, {
       filename: '[name].css',
       chunkFilename: '[name].css',
     }),
+    new ReactRefreshPlugin({ overlay: { sockIntegration: 'whm' } }),
   ],
   stats: 'minimal',
 });

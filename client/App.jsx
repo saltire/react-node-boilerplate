@@ -1,9 +1,7 @@
-import { hot } from 'react-hot-loader/root';
-
 import './App.scss';
 
 
-function App() {
+export default function App() {
   return (
     <div className='App'>
       <header>
@@ -15,5 +13,3 @@ function App() {
     </div>
   );
 }
-
-export default hot(App);

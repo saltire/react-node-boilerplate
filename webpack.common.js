@@ -6,9 +6,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 
 module.exports = {
-  entry: {
-    index: path.resolve(__dirname, 'client/index.jsx'),
-  },
+  entry: path.resolve(__dirname, 'client/index.jsx'),
   output: {
     filename: '[name].[contenthash].js',
     chunkFilename: '[name].[chunkhash].js',

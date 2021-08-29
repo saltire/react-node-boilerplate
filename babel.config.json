@@ -3,7 +3,12 @@
     ["@babel/preset-react", { "runtime": "automatic" }],
     ["@babel/preset-env", { "targets": "defaults" }]
   ],
-  "plugins": [
-    "react-hot-loader/babel"
-  ]
+  "plugins": [],
+  "env": {
+    "development": {
+      "plugins": [
+        "react-refresh/babel"
+      ]
+    }
+  }
 }
