@@ -1,21 +1,20 @@
 'use strict';
 
 const express = require('express');
-const path = require('path');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
 
-const webpackConfig = require('../../webpack.dev.js');
+const webpackConfig = require('../../webpack.dev');
 
 
-const appRoot = webpackConfig.output.publicPath;
+const { publicPath, path: outputPath } = webpackConfig.output;
 
 const router = module.exports = express.Router();
 
 if (process.env.NODE_ENV === 'production') {
   // Serve already-compiled webpack content from the dist folder.
-  router.use(appRoot, express.static(path.resolve(__dirname, '../../dist')));
+  router.use(publicPath, express.static(outputPath));
 }
 else {
   const compiler = webpack(webpackConfig);
